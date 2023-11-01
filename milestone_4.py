@@ -34,8 +34,3 @@ class Hangman():
             else:
                 self.check_guess(guess)
                 self.list_of_guesses.append(guess)
-    
-
-#%%
-game = Hangman(['banana', 'grape', 'strawberry', 'raspberry', 'orange'])
-game.ask_for_input()
