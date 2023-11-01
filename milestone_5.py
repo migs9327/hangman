@@ -1,9 +1,21 @@
+'''A simple game of hangman for the command line. Pulls from 58109 available words!'''
 #%%
 import random
 import time
 
 class Hangman():
+    '''
+    A class representing a game of Hangman.
+    '''
+
     def __init__(self, word_list, num_lives):
+        """
+        Initialise a new game of Hangman.
+        
+        Parameters:
+            word_list (list): A list of words for the game to choose from.
+            num_lives (int): The number of lives the player starts with.
+        """
         self.word = random.choice(word_list)
         self.word_guessed = ['_' for letter in self.word] # Should update to include guessed letters
         self.num_unique_letters_remaining = len(set(self.word).difference(set(self.word_guessed)))# The number of UNIQUE letters in the word that have not been guessed yet
@@ -12,6 +24,12 @@ class Hangman():
         self.list_of_guesses = [] # list of guesses already tried
     
     def check_guess(self, guess):
+        """
+        Check the player's guess and update the game state accordingly.
+        
+        Parameters:
+            guess (str): The letter guessed by the player.
+        """
         guess = str.lower(guess)
         if guess in self.word:
             time.sleep(0.5)
@@ -29,6 +47,10 @@ class Hangman():
 
     
     def ask_for_input(self):
+        """
+        Prompt the player for a letter guess and validate the input.
+        """
+
             guess = input('Enter a single letter: ')
             if not len(guess) == 1 or not guess.isalpha():
                 print("Invalid letter. Please, enter a single alphabetical character.")
@@ -43,6 +65,12 @@ class Hangman():
                     print('Your incorrect guesses so far: ', list(incorrect_guesses))
 
 def play_game(word_list):
+    """
+    The main game loop.
+    
+    Parameters:
+        word_list (list): A list of words for the game to choose from.
+    """
 
     while True:
         try:
@@ -69,6 +97,10 @@ def play_game(word_list):
             break
 #%%
 def main():
+    """
+    The entry point for the script. Reads the word list and starts the game.
+    """
+    
     try:
         with open('wordlist.txt', 'r') as wordlist:
             words = wordlist.read()
