@@ -87,6 +87,7 @@ def play_game(word_list):
     while True: 
         if game.num_lives == 0:
             print('You lost!')
+            print('The word was: ', game.word)
             break
         elif game.num_unique_letters_remaining > 0:
             time.sleep(0.2)
